@@ -1,46 +1,176 @@
+<!DOCTYPE html>
+<html>
 
-<script src='/web?jquery.min.js'></script>
-<form method='POST' action='#' enctype='multipart/form-data' id='upload_form'>
-  <input type='file' name='update'>
-  <input type='submit' value='Upload'>
-</form>
-<div id='prg'>progress: 0%</div>
-<script>
-  var baseHost = document.location.origin
-  var otaUrl = baseHost + ':82/upload'
-  $('form').submit(function(e){
-  e.preventDefault();
-  var form = $('#upload_form')[0];
-  var data = new FormData(form); 
-  var filename = $('input[type=file]').val().split('\\').pop();
-  $.ajax({
-    url: otaUrl,
-    type: 'POST',
-    crossDomain: true,
-    data: data,
-    contentType: false,
-    processData: false,
-    headers: { 'filename': filename },
-    xhr: function() {
-      var xhr = new window.XMLHttpRequest();
-      xhr.upload.addEventListener('progress', function(evt) {
-        if (evt.lengthComputable) {
-          var per = evt.loaded / evt.total;
-          $('#prg').html('progress: ' + Math.round(per*100) + '%');
-          if (evt.loaded == evt.total) {
-            $('#prg').html('Uploaded, wait for completion result');
-          }
-        }
-      }, false);
-      return xhr;
-    },
-    success: function(data,status,xhr){
-      $('#prg').html(xhr.responseText);
-    },
-    error: function(xhr, status, error) {
-      $('#prg').html('Error: ' + xhr.responseText);
+<head>
+  <title>SkyNet OTA Updater</title>
+</head>
+
+<body style="background-color:black;">
+  <style>
+    .flex-parent {
+      display: flex;
     }
-   });
-  });
-</script>
 
+    .jc-center {
+      justify-content: center;
+    }
+
+    .button {
+      border: none;
+      color: #880808;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      height: 50;
+      width: auto;
+    }
+    .button1 {
+      background-color: black;
+      color: #880808;
+      border: 2px solid #880808;
+      border-radius: 25px;
+    }
+
+    .button1:hover {
+      background-color: #880808;
+      color: white;
+    }
+
+    .button1:active {
+        background: black;
+        color: white;
+        border: 2px solid white;
+    }
+
+    .button2 {
+      background-color: black;
+      color: #880808;
+      border: 2px solid #880808;
+      border-radius: 25px;
+    }
+
+    .button2:hover {
+      background-color: #880808;
+      color: white;
+    }
+    .button2:active {
+        background: black;
+        color: white;
+        border: 2px solid white;
+    }
+
+    ::-webkit-file-upload-button {
+      background: white;
+      color: black;
+      border: 2px solid #4CAF50;
+      padding: 1em;
+    }
+
+    ::-webkit-file-upload-button:hover {
+      background: #4CAF50;
+      color: white;
+      padding: 1em;
+    }
+
+    input[type=submit] {
+      width: 400px;
+      background-color: black;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: 2px solid white;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: white;
+      color: black;
+      border: 2px solid red;
+    }
+
+    input[type=file]::file-selector-button {
+      width: 400px;
+      background-color: black;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: 2px solid white;
+      border-radius: 25px;
+    }
+
+    input[type=file]::file-selector-button:hover {
+      background-color: white;
+      color: black;
+      border: 2px solid red;
+    }
+  </style>
+  <div>
+    <img src="logo.png" alt="Logo" width="50" height="50">
+  </div>
+  <div class="flex-parent jc-center">
+    <h1 style="color:white">Skynet OTA</h1>
+  </div>
+  <script src='/web?jquery.min.js'></script>
+  <div class="flex-parent jc-center">
+    <form method='POST' action='#' enctype='multipart/form-data' id='upload_form'>
+      <input type='file' name='update' id="fileUpload">
+      <input type='submit' value='Upload'>
+      <div class="flex-parent jc-center">
+        <!--<button class="button button1">Check For Updates</button>-->
+      </div>
+    </form>
+  </div>
+  <div class="flex-parent jc-center">
+    <div id='prg' style="color:white">
+      <h2>progress: 0%</h2>
+    </div>
+  </div>
+  <script>
+    var baseHost = document.location.origin
+    var otaUrl = baseHost + ':82/upload'
+    $('form').submit(function (e) {
+      e.preventDefault();
+      var form = $('#upload_form')[0];
+      var data = new FormData(form);
+      var filename = $('input[type=file]').val().split('\\').pop();
+      $.ajax({
+        url: otaUrl,
+        type: 'POST',
+        crossDomain: true,
+        data: data,
+        contentType: false,
+        processData: false,
+        headers: { 'filename': filename },
+        xhr: function () {
+          var xhr = new window.XMLHttpRequest();
+          xhr.upload.addEventListener('progress', function (evt) {
+            if (evt.lengthComputable) {
+              var per = evt.loaded / evt.total;
+              $('#prg').html('progress: ' + Math.round(per * 100) + '%');
+              if (evt.loaded == evt.total) {
+                $('#prg').html('Uploaded, wait for completion result');
+              }
+            }
+          }, false);
+          return xhr;
+        },
+        success: function (data, status, xhr) {
+          $('#prg').html(xhr.responseText);
+        },
+        error: function (xhr, status, error) {
+          $('#prg').html('Error: ' + xhr.responseText);
+        }
+      });
+    });
+  </script>
+
+  </div>
+</body>
+
+</html>
