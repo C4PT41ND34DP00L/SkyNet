@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>SkyNet OTA Updater</title>
+   </head>
+   <body style="background-color:black;">
+      <style>
+         .flex-parent {
+         display: flex;
+         }
+         .jc-center {
+         justify-content: center;
+         }
+         .button {
+         border: none;
+         color: white;
+         padding: 16px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         margin: 4px 2px;
+         transition-duration: 0.4s;
+         cursor: pointer;
+         height:47;
+         width:auto;
+         }
+         .button1 {
+         background-color: white;
+         color: black;
+         border: 2px solid #4CAF50;
+         }
+         .button1:hover {
+         background-color: #4CAF50;
+         color: white;
+         }
+         .button2 {
+         background-color: white;
+         color: black;
+         border: 2px solid #008CBA;
+         }
+         .button2:hover {
+         background-color: #008CBA;
+         color: white;
+         }
+         ::-webkit-file-upload-button {
+         background: white;
+         color: black;
+         border: 2px solid #4CAF50;
+         padding: 1em;
+         }
+         ::-webkit-file-upload-button:hover {
+         background: #4CAF50;
+         color: white;
+         padding: 1em;
+         }
+      </style>
+      <div class="flex-parent jc-center">
+         <h1 style="color:white">Skynet OTA</h1>
+      </div>
+      <div class="flex-parent jc-center">
+         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+         <form method='POST' action='#' enctype='multipart/form-data' id='upload_form'>
+            <input type='file' name='update'>
+            <input type='submit' value='Update' class="button button2">
+         </form>
+      </div>
+      <div class="flex-parent jc-center">
+         <div id='prg' style="color:white">
+            <h3>progress: 0%</h3>
+         </div>
+      </div>
+      <script>
+         var baseHost = document.location.origin
+         var otaUrl = baseHost + '/update'
+         $('form').submit(function(e){
+         e.preventDefault();
+         var form = $('#upload_form')[0];
+         var data = new FormData(form); 
+         $.ajax({
+           url: otaUrl,
+           type: 'POST',
+           data: data,
+           contentType: false,
+           processData: false,
+           xhr: function() {
+             var xhr = new window.XMLHttpRequest();
+             xhr.upload.addEventListener('progress', function(evt) {
+               if (evt.lengthComputable) {
+                 var per = evt.loaded / evt.total;
+                 $('#prg').html('progress: ' + Math.round(per*100) + '%');
+               }
+             }, false);
+             return xhr;
+           }
+          });
+         });
+      </script>
+      </div>
+   </body>
+</html>
