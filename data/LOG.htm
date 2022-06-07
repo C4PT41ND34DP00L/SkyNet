@@ -1,17 +1,71 @@
 <html>
-  <body>
-   <h2>
-    <a onClick="if(!window.confirm('This will delete all log entries. Are you sure ?')) 
+
+<head>
+  <title>SkyNet Logs</title>
+</head>
+
+<body style="background-color:black;">
+  <style>
+    .flex-parent {
+      display: flex;
+    }
+
+    .jc-center {
+      justify-content: center;
+    }
+
+    .button {
+      border: none;
+      color: #880808;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      height: 50;
+      width: auto;
+    }
+    .button1 {
+      background-color: black;
+      color: #880808;
+      border: 2px solid #880808;
+      border-radius: 25px;
+    }
+
+    .button1:hover {
+      background-color: #880808;
+      color: white;
+    }
+
+    .button:active {
+        background: black;
+        color: white;
+        border: 2px solid white;
+    }
+  </style>
+  <div>
+    <img src="/web?logo.png" alt="Logo" width="50" height="50">
+  </div>
+  <div class="flex-parent jc-center">
+    <h2 style="color:white">Skynet Logs</h2>
+  </div>
+  <div class="flex-parent jc-center">
+    <h2>
+      <button class="button button1" onClick="if(!window.confirm('This will delete all log entries. Are you sure ?')) 
      return false;     
      fetch('/control?resetLog=1')
      .then(response => { window.location.href='/control?log=1'; }); 
-     return false;"
-     href=''>Clear Log</a>
-    <a onClick='window.location.reload' href=''>Refresh</a>
-   </h2>
-   <pre>
-    <iframe src='/web?log.txt' scrolling="yes" frameborder="0" height="80%" width="90%">
+     return false;" href=''>Clear Log</button>
+      <button class="button button1" onClick="window.location.reload();">Refresh Log</button>
+    </h2>
+  </div>
+  <pre>
+    <iframe src='/web?log.txt' scrolling="yes" frameborder="0" height="auto%" width="96%">
     </iframe>
    </pre>
-  </body>
+</body>
+
 </html>

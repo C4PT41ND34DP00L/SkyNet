@@ -9,7 +9,7 @@
         <style>
             body {
                 font-family: Arial,Helvetica,sans-serif;
-                background: #181818;
+                background: black;
                 color: #EFEFEF;
                 font-size: 16px
             }
@@ -56,7 +56,7 @@
             
            section#header {
               min-width: 332px;
-              background-color: #363636;
+              background-color: black;
               margin-bottom: 3px;
               padding: 4px 12px;
               display: flex;
@@ -74,7 +74,7 @@
            }
            section#footer {
               min-width: 332px;
-              background-color: #363636;
+              background-color: black;
               margin-top: 0px;
               padding: 4px 12px;
               display: flex;
@@ -88,7 +88,7 @@
               flex-direction: column;
               flex-wrap: nowrap;
               min-width: 332px;
-              background: #363636;
+              background: black;
               padding: 8px;
               border-radius: 4px;
               margin-bottom: 3px;
@@ -181,19 +181,22 @@
                 border: 0;
                 line-height: 20px;
                 cursor: pointer;
-                color: #fff;
-                background: #ff3034;
+                color: #880808;
+                background: black;
+                border: 2px solid #880808;
                 border-radius: 5px;
                 font-size: 16px;
                 outline: 0
             }
 
             button:hover {
-                background: #ff494d
+                color: white;
+                background: #880808;
+                border: 2px solid white;
             }
 
             button:active {
-                background: green
+                background: black
             }
 
             button.disabled {
@@ -205,7 +208,7 @@
                 -webkit-appearance: none;
                 width: 100%;
                 height: 22px;
-                background: #363636;
+                background: black;
                 cursor: pointer;
                 margin: 0
             }
@@ -228,7 +231,7 @@
                 height: 22px;
                 width: 22px;
                 border-radius: 50px;
-                background: #ff3034;
+                background: #880808;
                 cursor: pointer;
                 -webkit-appearance: none;
                 margin-top: -11.5px
@@ -252,7 +255,7 @@
                 height: 22px;
                 width: 22px;
                 border-radius: 50px;
-                background: #ff3034;
+                background: #880808;
                 cursor: pointer
             }
 
@@ -282,7 +285,7 @@
                 height: 22px;
                 width: 22px;
                 border-radius: 50px;
-                background: #ff3034;
+                background: #880808;
                 cursor: pointer;
                 height: 2px
             }
@@ -292,7 +295,7 @@
             }
 
             input[type=range]:focus::-ms-fill-upper {
-                background: #363636
+                background: black
             }
 
             .switch {
@@ -315,7 +318,7 @@
                 height: 22px;
                 border-radius: 22px;
                 cursor: pointer;
-                background-color: grey
+                background-color: #303030
             }
 
             .slider,.slider:before {
@@ -335,7 +338,7 @@
             }
 
             input:checked+.slider {
-                background-color: #ff3034
+                background-color: #880808
             }
 
             input:checked+.slider:before {
@@ -355,7 +358,7 @@
                 position: absolute;
                 right: 5px;
                 top: 5px;
-                background: #ff3034;
+                background: #880808;
                 width: 16px;
                 height: 16px;
                 border-radius: 100px;
@@ -439,7 +442,8 @@
         <section id="main">
             <section id="header">
               <section id="title">
-                <h2 id="page-title">ESP32-CAM_AVI2SD</h2>&nbsp;
+                <img src="logo.png" alt="Logo" width="100" height="50">
+                <h2 id="page-title">SkyNet</h2>&nbsp;
                 <h6 id="fw_version" class="default-action displayonly"></h6>
               </section>
               <nav id="maintoolbar">
@@ -779,7 +783,7 @@
                           </div>
                           <div class="input-group" id="wifi-group">
                               <label for="ST_Pass">Password</label>
-                              <input id="ST_Pass" name="ST_Pass" length=64 placeholder="Router password" class="default-action">
+                              <input type="password" id="ST_Pass" name="ST_Pass" length=64 placeholder="Router password" class="default-action">
                           </div>
                           <br>
                           <h3>Clock settings</h3>
@@ -798,6 +802,7 @@
                                 <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europe/Paris</option>
                                 <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europe/Rome</option>
                                 <option value="CET-1CEST,M3.5.0,M10.5.0/3">Europe/Zurich</option>
+                                <option value="EST5EDT,M3.2.0,M11.1.0">US Eastern Time</option>
                                 <option value="Etc/GMT-12">GMT-12:00</option>
                                 <option value="Etc/GMT-11">GMT-11:00</option>
                                 <option value="Etc/GMT-10">GMT-10:00</option>
@@ -845,7 +850,7 @@
                           </div>
                           <div class="input-group" id="ftp-group">
                               <label for="ftp_pass">Ftp password</label>
-                              <input id="ftp_pass" name="ftp_pass" length=32 placeholder="Ftp password" class="default-action">
+                              <input type="password" id="ftp_pass" name="ftp_pass" length=32 placeholder="Ftp password" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
                               <label for="ftp_wd">Ftp root dir</label>
@@ -867,7 +872,7 @@
                           </div>
                           <div class="input-group" id="smtp-group">
                               <label for="smtp_pass">SMTP password</label>
-                              <input id="smtp_pass" name="smtp_pass" length=32 placeholder="smtp password" class="default-action">
+                              <input type="password" id="smtp_pass" name="smtp_pass" length=32 placeholder="smtp password" class="default-action">
                           </div>
                           <div class="input-group" id="ftp-group">
                               <label for="smtp_email">SMTP email</label>

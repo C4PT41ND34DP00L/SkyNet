@@ -84,7 +84,7 @@
 /********************* fixed defines leave as is *******************/ 
  
 #define APP_NAME "ESP-CAM_MJPEG" // max 15 chars
-#define APP_VER "6.2.2"
+#define APP_VER "6.2.3"
 
 #define DATA_DIR "/data"
 #define HTML_EXT ".htm"
